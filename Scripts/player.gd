@@ -27,6 +27,11 @@ func _physics_process(delta: float) -> void:
 		velocity.y = gravity * gravityDir * delta
 		
 
+	if is_on_ceiling():
+		animatedSprite2d.flip_v=true
+	elif is_on_floor():
+		animatedSprite2d.flip_v=false
+		
 
 
 
@@ -39,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	elif direction < 0:
 		animatedSprite2d.flip_h=true 
 	
-	if is_on_floor():
+	if is_on_floor() or is_on_ceiling():
 		if direction == 0:
 			animatedSprite2d.play("Idle")
 		else:

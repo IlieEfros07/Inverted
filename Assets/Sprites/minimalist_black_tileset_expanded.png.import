@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbrv3fxdsynv2"
-path="res://.godot/imported/minimalist_black_tileset.png-0c05e6a362356b14de4fce839b22a79c.ctex"
+uid="uid://c6jxoxgl61cw6"
+path="res://.godot/imported/minimalist_black_tileset_expanded.png-31aa15fc3ddfebc78cf841f24ba1fe81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/minimalist_black_tileset.png"
-dest_files=["res://.godot/imported/minimalist_black_tileset.png-0c05e6a362356b14de4fce839b22a79c.ctex"]
+source_file="res://Assets/Sprites/minimalist_black_tileset_expanded.png"
+dest_files=["res://.godot/imported/minimalist_black_tileset_expanded.png-31aa15fc3ddfebc78cf841f24ba1fe81.ctex"]
 
 [params]
 
