@@ -44,7 +44,6 @@ sources/2 = SubResource("TileSetAtlasSource_cggpd")
 [node name="player" parent="." instance=ExtResource("1_12fag")]
 z_index = 2
 position = Vector2(-328, 6)
-scale = Vector2(1.58553, 2.44655)
 
 [node name="Orb" parent="." instance=ExtResource("2_1q6tm")]
 z_index = 1
