@@ -12,6 +12,11 @@ var tileId = 0
 @onready var tileMap: TileMap = $"../TileMap"
 @onready var animatedSprite2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collisionShape2d: CollisionShape2D = $CollisionShape2D
+@onready var audioStreamPlayer2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var orb: Area2D = $"../Orb"
+
+
+
 
 func _ready() -> void:
 	add_to_group("player")
@@ -69,7 +74,18 @@ func _physics_process(delta: float) -> void:
 	
 
 func die():
-	await get_tree().create_timer(2.0).timeout
+	var sfx = audioStreamPlayer2d.duplicate()
+	get_tree().current_scene.add_child(sfx)
+	sfx.global_position=global_position
+	sfx.play()
+	collisionShape2d.queue_free()
+	modulate = Color.RED
+	await get_tree().create_timer(1.0).timeout
 	get_tree().reload_current_scene()
 
 	
+func next_lvl():
+	orb.get_node("AnimatedSprite2D").play("FadeOut")
+	print("going to the next lvl")
+	await get_tree().create_timer(2.0).timeout
+	orb.get_node("AnimatedSprite2D").play("Idle")
