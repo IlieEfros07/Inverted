@@ -86,6 +86,12 @@ func die():
 	
 func next_lvl():
 	orb.get_node("AnimatedSprite2D").play("FadeOut")
+	var nextLvlAudion = orb.get_node("AudioStreamPlayer2D")
+	var sfx = nextLvlAudion.duplicate()
+	get_tree().current_scene.add_child(sfx)
+	sfx.global_position=global_position
+	sfx.play()
+	
 	print("going to the next lvl")
-	await get_tree().create_timer(2.0).timeout
-	orb.get_node("AnimatedSprite2D").play("Idle")
+	await get_tree().create_timer(0.5).timeout
+	get_tree().change_scene_to_file("res://Scenes/level_2.tscn")

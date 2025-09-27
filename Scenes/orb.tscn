@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://buws4qtv50vjv"]
+[gd_scene load_steps=16 format=3 uid="uid://buws4qtv50vjv"]
 
 [ext_resource type="Script" uid="uid://6ffv64gqpe5" path="res://Scripts/orb.gd" id="1_ryljl"]
 [ext_resource type="Texture2D" uid="uid://cfhembys03bej" path="res://Assets/Sprites/orbV2.png" id="2_ryljl"]
+[ext_resource type="AudioStream" uid="uid://bda4g67b1pbh5" path="res://Assets/Sounds/NextLvl.mp3" id="3_4tb7o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4tb7o"]
 atlas = ExtResource("2_ryljl")
@@ -95,8 +96,11 @@ script = ExtResource("1_ryljl")
 sprite_frames = SubResource("SpriteFrames_s3w5g")
 animation = &"FadeOut"
 autoplay = "Idle"
-frame_progress = 0.833886
+frame_progress = 0.552251
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)
 shape = SubResource("CircleShape2D_25wf1")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4tb7o")
