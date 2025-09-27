@@ -18,6 +18,7 @@ var tileId = 0
 
 
 
+
 func _ready() -> void:
 	add_to_group("player")
 
@@ -74,11 +75,12 @@ func _physics_process(delta: float) -> void:
 	
 
 func die():
+	collisionShape2d.queue_free()
 	var sfx = audioStreamPlayer2d.duplicate()
 	get_tree().current_scene.add_child(sfx)
 	sfx.global_position=global_position
 	sfx.play()
-	collisionShape2d.queue_free()
+	GameManager.score = 0 
 	modulate = Color.RED
 	await get_tree().create_timer(1.0).timeout
 	get_tree().reload_current_scene()
@@ -94,4 +96,8 @@ func next_lvl():
 	
 	print("going to the next lvl")
 	await get_tree().create_timer(0.5).timeout
-	get_tree().change_scene_to_file("res://Scenes/level_2.tscn")
+	GameManager.next_lvl()
+
+
+
+	
