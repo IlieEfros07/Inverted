@@ -134,6 +134,7 @@ tile_map_data = PackedByteArray("AAD1/wEAAgABAAAAAAD0/wEAAgABAAAAAADz/wEAAgABAAA
 tile_set = SubResource("TileSet_3v663")
 
 [node name="Blocks" type="TileMapLayer" parent="TileSets"]
+unique_name_in_owner = true
 use_parent_material = true
 tile_map_data = PackedByteArray("AAAWAPv/AgABAAAAAAAVAPv/AgABAAAAAAAUAPv/AgABAAAAAAAUAPz/AgABAAAAAAAUAP3/AgABAAAAAAAUAP7/AgABAAAAAAAVAP7/AgABAAAAAAAWAP7/AgABAAAAAAA=")
 tile_set = SubResource("TileSet_3v663")

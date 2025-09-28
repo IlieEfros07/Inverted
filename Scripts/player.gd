@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 
 const SPEED = 150.0
+const ACCELERATION = 800.0
+const DECELERATION = 1200.0
 const JUMP_VELOCITY = -300.0
 
 const spikeLayer= 8
@@ -93,10 +95,11 @@ func _physics_process(delta: float) -> void:
 	else:
 		animatedSprite2d.play("Flip")
 	
-	if direction:
-		velocity.x = direction * SPEED
+	if direction != 0:
+		velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		# Decelerate towards zero
+		velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
 
 	move_and_slide()
 
@@ -120,8 +123,12 @@ func disable_auto_flip():
 	
 
 func die():
+	var sceneTree = get_tree()
+	var currentScene = sceneTree.current_scene
+	var scenePath = currentScene.scene_file_path
 	set_physics_process(false)
 	set_process(false)
+	GameManager.add_death()
 	var sfx = audioStreamPlayer2d.duplicate()
 	get_tree().current_scene.add_child(sfx)
 	sfx.global_position=global_position
@@ -129,7 +136,7 @@ func die():
 	GameManager.score = 0 
 	modulate = Color.RED
 	await get_tree().create_timer(1.0).timeout
-	get_tree().reload_current_scene()
+	sceneTree.change_scene_to_file(scenePath)
 
 	
 func next_lvl():
@@ -139,8 +146,6 @@ func next_lvl():
 	get_tree().current_scene.add_child(sfx)
 	sfx.global_position=global_position
 	sfx.play()
-	
-	print("going to the next lvl")
 	await get_tree().create_timer(0.5).timeout
 	GameManager.next_lvl()
 

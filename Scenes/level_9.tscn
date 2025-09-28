@@ -71,6 +71,21 @@ physics_layer_0/collision_mask = 0
 physics_layer_1/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_dvrgg")
 
+[sub_resource type="Animation" id="Animation_qv3nj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-238, -17)]
+}
+
 [sub_resource type="Animation" id="Animation_rybd0"]
 resource_name = "new_animation"
 length = 2.5
@@ -88,7 +103,13 @@ tracks/0/keys = {
 "values": [Vector2(-237, -16), Vector2(192, -16)]
 }
 
-[sub_resource type="Animation" id="Animation_qv3nj"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_066uc"]
+_data = {
+&"RESET": SubResource("Animation_qv3nj"),
+&"new_animation": SubResource("Animation_rybd0")
+}
+
+[sub_resource type="Animation" id="Animation_basfb"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -100,13 +121,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-238, -17)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_066uc"]
-_data = {
-&"RESET": SubResource("Animation_qv3nj"),
-&"new_animation": SubResource("Animation_rybd0")
+"values": [Vector2(216, 4)]
 }
 
 [sub_resource type="Animation" id="Animation_exqje"]
@@ -124,21 +139,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-180, 98), Vector2(216, 98), Vector2(216, 93.0541), Vector2(216, 5)]
-}
-
-[sub_resource type="Animation" id="Animation_basfb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(216, 4)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_frqt4"]
