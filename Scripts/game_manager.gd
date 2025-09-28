@@ -9,7 +9,8 @@ var level_scenes = [
 	"res://Scenes/level_4.tscn",
 	"res://Scenes/level_5.tscn",
 	"res://Scenes/level_6.tscn",
-	"res://Scenes/level_7.tscn"
+	"res://Scenes/level_7.tscn",
+	"res://Scenes/level_8.tscn"
 ]
 
 var currentLevelActions = {
@@ -19,7 +20,8 @@ var currentLevelActions = {
 	3: "normal",   
 	4: "normal",    
 	5: "auto_flip",  
-	6: "normal",     
+	6: "normal",  
+	7: "normal"   
 
 }
 

@@ -10,6 +10,9 @@ var gravity = 900
 var tileCord = 0.0
 var autoFlipTimer = 0.0
 var tileId = 0
+
+var gravityOverride = 0
+
 @onready var animatedSprite2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collisionShape2d: CollisionShape2D = $CollisionShape2D
 @onready var collision_shape_2d: CollisionShape2D = $HitBox/CollisionShape2D
@@ -36,15 +39,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Handle jump.
-	if Input.is_action_just_pressed("up"):
-		swoosh.play()
-		flip_gravity(delta)
-	if Input.is_action_just_pressed("down"):
-		swoosh.play()
-		flip_gravity(delta)
-		
-	print(GameManager.lvl)
+	if gravityOverride != 0 :
+		gravityDir = gravityOverride
+	else:
+		if Input.is_action_just_pressed("up") or Input.is_action_just_pressed("down"):
+			flip_gravity(delta)
+	
+
+
 	if GameManager.currentLevelActions[GameManager.lvl] == "auto_flip":
 		autoFlipTimer += delta
 		if autoFlipTimer >= 2.0:
@@ -65,10 +67,6 @@ func _physics_process(delta: float) -> void:
 		
 	
 	
-
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("left", "right")
 	
 	if direction > 0:
@@ -95,9 +93,13 @@ func _physics_process(delta: float) -> void:
 
 
 func flip_gravity(delta: float):
+	swoosh.play()
 	gravityDir *= -1
 	velocity.y = gravity * gravityDir * delta
 
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	die()
 
 func die():
 	set_physics_process(false)
@@ -125,11 +127,5 @@ func next_lvl():
 	GameManager.next_lvl()
 
 
-
-	
-
-
-
-
-func _on_hit_box_body_entered(body: Node2D) -> void:
-	die()
+func set_gravity_override(overideType: int):
+	gravityOverride = overideType

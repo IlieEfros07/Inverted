@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var animatedSprite2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 @onready var orb: Area2D = $"../Orb"
 
@@ -10,6 +11,7 @@ func _on_body_entered(body: Node2D) -> void:
 		press_button()
 
 func press_button():
+	audio_stream_player_2d.play()
 	animatedSprite2d.play("On")
 	orb.visible = true
 

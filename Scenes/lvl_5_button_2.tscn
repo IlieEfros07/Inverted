@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://du3snnfpgaw0b"]
+[gd_scene load_steps=8 format=3 uid="uid://du3snnfpgaw0b"]
 
 [ext_resource type="Script" uid="uid://dxlqhbhhumu7l" path="res://Scripts/lvl_5_button_2.gd" id="1_bkpkq"]
 [ext_resource type="Texture2D" uid="uid://dycdlyhnicjqt" path="res://Assets/Sprites/button.png" id="2_8m8my"]
+[ext_resource type="AudioStream" uid="uid://bgl7gp6tpqrc0" path="res://Assets/Sounds/button-press.mp3" id="3_8m8my"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1cmwl"]
 size = Vector2(18, 8)
@@ -44,5 +45,8 @@ shape = SubResource("RectangleShape2D_1cmwl")
 sprite_frames = SubResource("SpriteFrames_iju5o")
 animation = &"Off"
 autoplay = "Off"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_8m8my")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

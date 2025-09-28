@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://boqbfn1j0ypvb"]
+
+[ext_resource type="Script" uid="uid://danuxvlcaun6h" path="res://Scripts/blue_zone.gd" id="1_ewh1l"]
+[ext_resource type="AudioStream" uid="uid://1gvhg3en0f41" path="res://Assets/Sounds/hum.mp3" id="2_chu40"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0u7x1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chu40"]
+
+[node name="BlueZone" type="Area2D"]
+script = ExtResource("1_ewh1l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(19.874, 20.0741)
+texture = SubResource("CanvasTexture_0u7x1")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_chu40")
+max_polyphony = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_chu40")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

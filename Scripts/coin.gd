@@ -6,9 +6,10 @@ extends Area2D
 
 
 func _on_body_entered(body: Node2D) -> void:
-	GameManager.addScore()
-	var sfx = pickUp.duplicate()
-	get_tree().current_scene.add_child(sfx)
-	sfx.global_position=global_position
-	sfx.play()
-	queue_free()
+	if body.is_in_group("player"):
+		GameManager.addScore()
+		var sfx = pickUp.duplicate()
+		get_tree().current_scene.add_child(sfx)
+		sfx.global_position=global_position
+		sfx.play()
+		queue_free()

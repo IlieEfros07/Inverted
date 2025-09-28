@@ -1,6 +1,5 @@
-[gd_scene load_steps=13 format=4 uid="uid://c554omfyx3rc7"]
+[gd_scene load_steps=12 format=4 uid="uid://c554omfyx3rc7"]
 
-[ext_resource type="Script" uid="uid://dxlqhbhhumu7l" path="res://Scripts/lvl_5_button_2.gd" id="1_gfyxx"]
 [ext_resource type="PackedScene" uid="uid://c3pbg6mscqwn5" path="res://Scenes/player.tscn" id="1_mb3x2"]
 [ext_resource type="PackedScene" uid="uid://buws4qtv50vjv" path="res://Scenes/orb.tscn" id="2_02esc"]
 [ext_resource type="Texture2D" uid="uid://c6jxoxgl61cw6" path="res://Assets/Sprites/minimalist_black_tileset_expanded.png" id="3_gfyxx"]
@@ -72,7 +71,6 @@ physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_02esc")
 
 [node name="Level5" type="Node2D"]
-script = ExtResource("1_gfyxx")
 
 [node name="player" parent="." instance=ExtResource("1_mb3x2")]
 z_index = 2
