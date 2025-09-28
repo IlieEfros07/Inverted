@@ -6,7 +6,8 @@ var lvl = 0
 var level_scenes = [
 	"res://Scenes/level_2.tscn",
 	"res://Scenes/level_3.tscn",
-	"res://Scenes/level_4.tscn"
+	"res://Scenes/level_4.tscn",
+	"res://Scenes/level_5.tscn"
 ]
 
 

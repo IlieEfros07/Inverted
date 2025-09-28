@@ -3,17 +3,19 @@ extends CharacterBody2D
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -200.0
+
 const spikeLayer= 8
 var gravityDir = 1
 var gravity = 900
 var tileCord = 0.0
 var tileId = 0
-
-@onready var tileMap: TileMap = $"../TileMap"
 @onready var animatedSprite2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collisionShape2d: CollisionShape2D = $CollisionShape2D
+@onready var collision_shape_2d: CollisionShape2D = $HitBox/CollisionShape2D
+
 @onready var audioStreamPlayer2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var orb: Area2D = $"../Orb"
+@onready var hit_box: Area2D = $HitBox
 
 
 
@@ -23,9 +25,11 @@ func _ready() -> void:
 	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
+	
+	
+	
 	# Add the gravity.
 	if not is_on_floor():
-		
 		velocity.y += gravity * gravityDir * delta
 		
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -42,8 +46,12 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_ceiling():
 		animatedSprite2d.flip_v=true
+		collision_shape_2d.rotation= -180
+		
 	elif is_on_floor():
 		animatedSprite2d.flip_v=false
+		collision_shape_2d.rotation = 0
+
 		
 	
 	
@@ -57,6 +65,8 @@ func _physics_process(delta: float) -> void:
 		animatedSprite2d.flip_h=false
 	elif direction < 0:
 		animatedSprite2d.flip_h=true 
+
+
 	
 	if is_on_floor() or is_on_ceiling():
 		if direction == 0:
@@ -72,10 +82,12 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
-	
+
+
 
 func die():
-	collisionShape2d.queue_free()
+	set_physics_process(false)
+	set_process(false)
 	var sfx = audioStreamPlayer2d.duplicate()
 	get_tree().current_scene.add_child(sfx)
 	sfx.global_position=global_position
@@ -101,3 +113,9 @@ func next_lvl():
 
 
 	
+
+
+
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	die()
