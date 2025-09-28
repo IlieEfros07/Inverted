@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://c3pbg6mscqwn5"]
+[gd_scene load_steps=20 format=3 uid="uid://c3pbg6mscqwn5"]
 
 [ext_resource type="Script" uid="uid://c8w60owef8rp7" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://bdiduqx7i1yap" path="res://Assets/Sprites/walker (2) (1).png" id="2_cvnsp"]
 [ext_resource type="AudioStream" uid="uid://bxgco5s3hhpyv" path="res://Assets/Sounds/Die.mp3" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://u5wjkci2rn3i" path="res://Assets/Sounds/swoosh-06-351021.mp3" id="4_vgqql"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
 atlas = ExtResource("2_cvnsp")
@@ -140,8 +141,11 @@ collision_mask = 128
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(-17, 1)
 rotation = 0.0061833
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_vgqql")
+
+[node name="Swoosh" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vgqql")
+max_polyphony = 5
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

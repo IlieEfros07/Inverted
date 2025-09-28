@@ -7,8 +7,20 @@ var level_scenes = [
 	"res://Scenes/level_2.tscn",
 	"res://Scenes/level_3.tscn",
 	"res://Scenes/level_4.tscn",
-	"res://Scenes/level_5.tscn"
+	"res://Scenes/level_5.tscn",
+	"res://Scenes/level_6.tscn"
 ]
+
+var currentLevelActions = {
+	0: "normal",    
+	1: "normal",  
+	2: "normal",    
+	3: "normal",   
+	4: "normal",    
+	5: "auto_flip",  
+	6: "normal",     
+
+}
 
 
 func addScore():

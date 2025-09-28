@@ -8,14 +8,16 @@ const spikeLayer= 8
 var gravityDir = 1
 var gravity = 900
 var tileCord = 0.0
+var autoFlipTimer = 0.0
 var tileId = 0
 @onready var animatedSprite2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collisionShape2d: CollisionShape2D = $CollisionShape2D
 @onready var collision_shape_2d: CollisionShape2D = $HitBox/CollisionShape2D
-
-@onready var audioStreamPlayer2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var orb: Area2D = $"../Orb"
 @onready var hit_box: Area2D = $HitBox
+
+@onready var audioStreamPlayer2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var swoosh: AudioStreamPlayer2D = $Swoosh
 
 
 
@@ -27,7 +29,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	
 	
-	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * gravityDir * delta
@@ -37,12 +38,21 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if Input.is_action_just_pressed("up"):
-		gravityDir *= -1
-		velocity.y = gravity * gravityDir * delta
+		swoosh.play()
+		flip_gravity(delta)
 	if Input.is_action_just_pressed("down"):
-		gravity *= -1
-		velocity.y = gravity * gravityDir * delta
+		swoosh.play()
+		flip_gravity(delta)
 		
+	print(GameManager.lvl)
+	if GameManager.currentLevelActions[GameManager.lvl] == "auto_flip":
+		autoFlipTimer += delta
+		if autoFlipTimer >= 2.0:
+			swoosh.play()
+			flip_gravity(delta)
+			autoFlipTimer = 0.0
+			
+
 
 	if is_on_ceiling():
 		animatedSprite2d.flip_v=true
@@ -83,6 +93,10 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+
+func flip_gravity(delta: float):
+	gravityDir *= -1
+	velocity.y = gravity * gravityDir * delta
 
 
 func die():

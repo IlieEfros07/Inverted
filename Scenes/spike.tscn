@@ -1,7 +1,27 @@
 [gd_scene load_steps=5 format=3 uid="uid://i1048mqern4f"]
 
-[ext_resource type="Script" uid="uid://v6m0qh2ndjpu" path="res://Scripts/spike.gd" id="1_cdj5a"]
 [ext_resource type="Texture2D" uid="uid://t2c5aa342cv6" path="res://Assets/Sprites/Spikes.png" id="2_1hotg"]
+
+[sub_resource type="GDScript" id="GDScript_4g5cr"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	add_to_group(\"Spike\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+		
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group(\"player\"):
+		if body.has_method(\"die\"):
+			body.die()
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2mnih"]
 atlas = ExtResource("2_1hotg")
@@ -19,7 +39,7 @@ animations = [{
 }]
 
 [node name="Spike" type="Area2D"]
-script = ExtResource("1_cdj5a")
+script = SubResource("GDScript_4g5cr")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-8, 7, 0, -9, 7, 7)
