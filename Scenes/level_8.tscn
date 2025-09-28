@@ -44,6 +44,7 @@ sources/2 = SubResource("TileSetAtlasSource_wk15n")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dvrgg"]
 texture = ExtResource("5_q1vug")
 1:0/0 = 0
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
@@ -69,6 +70,7 @@ texture = ExtResource("5_q1vug")
 [sub_resource type="TileSet" id="TileSet_wk15n"]
 physics_layer_0/collision_layer = 128
 physics_layer_0/collision_mask = 0
+physics_layer_1/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_dvrgg")
 
 [node name="Level8" type="Node2D"]

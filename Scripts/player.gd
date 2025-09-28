@@ -9,6 +9,7 @@ var gravityDir = 1
 var gravity = 900
 var tileCord = 0.0
 var autoFlipTimer = 0.0
+var isAutoFlip = false
 var tileId = 0
 
 var gravityOverride = 0
@@ -53,6 +54,14 @@ func _physics_process(delta: float) -> void:
 			swoosh.play()
 			flip_gravity(delta)
 			autoFlipTimer = 0.0
+			
+	if isAutoFlip:
+		autoFlipTimer += delta
+		if autoFlipTimer >= 2.0:
+			swoosh.play()
+			flip_gravity(delta)
+			autoFlipTimer = 0.0
+			
 			
 
 
@@ -100,6 +109,15 @@ func flip_gravity(delta: float):
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	die()
+
+
+func enable_auto_flip():
+	isAutoFlip = true
+	autoFlipTimer = 0.0
+
+func disable_auto_flip():
+	isAutoFlip = false
+	
 
 func die():
 	set_physics_process(false)

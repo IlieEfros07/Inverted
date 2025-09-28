@@ -1,49 +1,49 @@
-[gd_scene load_steps=15 format=3 uid="uid://ceyk1sw6b8dq0"]
+[gd_scene load_steps=15 format=3 uid="uid://cuprrwx88gt3h"]
 
-[ext_resource type="Texture2D" uid="uid://bxavyquke6ig0" path="res://Assets/Sprites/spring.png" id="1_nv7ci"]
-[ext_resource type="Script" uid="uid://bijyiqduwdnjj" path="res://Scripts/spring.gd" id="1_ynq0b"]
-[ext_resource type="AudioStream" uid="uid://dp8mbqkdhum7g" path="res://Assets/Sounds/springJump.mp3" id="3_1w5vy"]
+[ext_resource type="Script" uid="uid://dwdh6o7blvgxt" path="res://Scripts/spring_lvl_10.gd" id="1_1yyhm"]
+[ext_resource type="Texture2D" uid="uid://bxavyquke6ig0" path="res://Assets/Sprites/spring.png" id="1_ejd6e"]
+[ext_resource type="AudioStream" uid="uid://dp8mbqkdhum7g" path="res://Assets/Sounds/springJump.mp3" id="2_1yyhm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynq0b"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cc01y"]
 size = Vector2(14, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1w5vy"]
-atlas = ExtResource("1_nv7ci")
+atlas = ExtResource("1_ejd6e")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7tg8b"]
-atlas = ExtResource("1_nv7ci")
+atlas = ExtResource("1_ejd6e")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_77tl1"]
-atlas = ExtResource("1_nv7ci")
+atlas = ExtResource("1_ejd6e")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_42hq0"]
-atlas = ExtResource("1_nv7ci")
+atlas = ExtResource("1_ejd6e")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7occl"]
-atlas = ExtResource("1_nv7ci")
+atlas = ExtResource("1_ejd6e")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jgqtt"]
-atlas = ExtResource("1_nv7ci")
+atlas = ExtResource("1_ejd6e")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x760p"]
-atlas = ExtResource("1_nv7ci")
+atlas = ExtResource("1_ejd6e")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qo3sq"]
-atlas = ExtResource("1_nv7ci")
+atlas = ExtResource("1_ejd6e")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1mpye"]
-atlas = ExtResource("1_nv7ci")
+atlas = ExtResource("1_ejd6e")
 region = Rect2(0, 64, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_am4hm"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_5roxh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -54,7 +54,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 6.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -80,23 +80,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"Jump",
-"speed": 4.0
+"speed": 8.0
 }]
 
-[node name="Spring" type="Area2D"]
-script = ExtResource("1_ynq0b")
+[node name="spring_lvl10" type="Area2D"]
+script = ExtResource("1_1yyhm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_ynq0b")
+shape = SubResource("RectangleShape2D_cc01y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_am4hm")
-animation = &"Jump"
+sprite_frames = SubResource("SpriteFrames_5roxh")
+animation = &"Idle"
 autoplay = "Idle"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_1w5vy")
+stream = ExtResource("2_1yyhm")
 max_polyphony = 6
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

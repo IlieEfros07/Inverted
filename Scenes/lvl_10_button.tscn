@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cytktn48uuabj"]
+
+[ext_resource type="Script" uid="uid://bb48gp1v7q0w0" path="res://Scripts/lvl_10_button.gd" id="1_l23cp"]
+[ext_resource type="Texture2D" uid="uid://dycdlyhnicjqt" path="res://Assets/Sprites/button.png" id="2_85lxa"]
+[ext_resource type="AudioStream" uid="uid://bgl7gp6tpqrc0" path="res://Assets/Sounds/button-press.mp3" id="3_2acka"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cmwl"]
+size = Vector2(18, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kpiu"]
+atlas = ExtResource("2_85lxa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smycg"]
+atlas = ExtResource("2_85lxa")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iju5o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kpiu")
+}],
+"loop": true,
+"name": &"Off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smycg")
+}],
+"loop": true,
+"name": &"On",
+"speed": 5.0
+}]
+
+[node name="lvl10_button" type="Area2D"]
+script = ExtResource("1_l23cp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_1cmwl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_iju5o")
+animation = &"Off"
+autoplay = "Off"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_2acka")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
