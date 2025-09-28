@@ -8,7 +8,8 @@ var level_scenes = [
 	"res://Scenes/level_3.tscn",
 	"res://Scenes/level_4.tscn",
 	"res://Scenes/level_5.tscn",
-	"res://Scenes/level_6.tscn"
+	"res://Scenes/level_6.tscn",
+	"res://Scenes/level_7.tscn"
 ]
 
 var currentLevelActions = {
